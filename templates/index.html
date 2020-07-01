@@ -1,0 +1,91 @@
+<!doctype html>
+<title>List of users</title>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #111;
+  color: white;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: green;
+  color: white;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="split left">
+  <div class="centered">
+    <h2>Upload form</h2>
+    <form action="." method="POST">
+        <label for="fName">First Name:</label><br>
+        <input type="text" name="fName"><br>
+        <label for="lName">Last Name:</label><br>
+        <input type="text" name="lName"><br>
+        <label for="city">City:</label><br>
+        <input type="text" name="city"><br>
+        <label for="age">Age:</label><br>
+        <input type="number" name="age"><br>
+        <label for="gender">Gender:</label>
+	<select id="gender" name="gender">
+	  <option value="male">Male</option>
+	  <option value="female">Female</option>
+	</select>
+	<br>
+        <!--input type="text" name="gender"><br-->
+        <input type="submit" name="my-form" value="Submit!">
+    </form>
+  </div>
+  <p>version 1.0</p>
+</div>
+<div class="split right">
+  <div class="centered">
+    <h2>Database data</h2>
+    <table>
+    <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>City</th>
+    <th>Age</th>
+    <th>Gender</th>
+    {% for doc in users %}
+    <tr>
+    	<td> {{doc.name}} </td>
+    	<td> {{doc.surname}} </td>
+    	<td> {{doc.city}} </td>
+    	<td> {{doc.age}} </td>
+    	<td> {{doc.gender}} </td>
+    </tr>
+    {% endfor %}
+    </table>
+  </div>
+</div>
+</body>
